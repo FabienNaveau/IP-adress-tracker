@@ -31,19 +31,23 @@ export default function Home () {
                 throw new Error
             }
         } catch(error) {
-            setError(error)
-            throw new Error(error)
+            setError("Désolé mais cette adresse IP n'existe pas !")
+            return
         }
 
     }
     const afficherIpInfos = () => {
-        if(!error) {
+        if(!error && !country) {
             return(
+                <p>Veuillez entrer une adresse IP</p>
+            )
+        } else if (!error) {
+            return (
                 <p>{timeZone} {country} {lat} {long} {asn} {isp}</p>
             )
         } else {
             return (
-            <p>Désolé mais requête impossible</p>
+                <p>{error}</p>
             )
         }
     }
