@@ -5,41 +5,45 @@ import arrow from "../../images/icon-arrow.svg";
 export default function Home () {
 
     const [ipAddress, setIpAddress] = useState("");
-    const [timeZone, setTimezone] = useState("")
-    const [country, setCountry] = useState("")
-    const [lat, setLat] = useState("")
-    const [long, setLong] = useState("")
-    const [asn, setAsn] = useState("")
-    const [isp, setIsp] = useState("")
-    const [error, setError] = useState("")
+    const [timeZone, setTimezone] = useState("");
+    const [country, setCountry] = useState("");
+    const [lat, setLat] = useState("");
+    const [long, setLong] = useState("");
+    const [asn, setAsn] = useState("");
+    const [isp, setIsp] = useState("");
+    const [error, setError] = useState("");
 
     const getIpInformations = async (event) => {
         event.preventDefault();
-        setIpAddress(document.querySelector("#ipInput").value);
-        console.log("mon adresse Ip :", ipAddress)
-        const res = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=at_KKLn7FwoBSlOdEE3TlBpJDZiCca74&ipAddress=${ipAddress}`)
-        console.log(res.status)
-        if(res.status == 200) {
-            const location = res.data.location
-            setTimezone(location.timezone)
-            setCountry(location.country)
-            setLat(location.lat)
-            setLong(location.lng)
-            setAsn(res.data.as.asn)
-            setIsp(res.data.isp)
-        } else {
-            setError("Désolé mais l'adresse entrée n'existe pas ou est privée")
+        try {
+            const res = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=at_KKLn7FwoBSlOdEE3TlBpJDZiCca74&ipAddress=${ipAddress}`)
+            
+            if(res) {
+                const location = res.data.location
+                setTimezone(location.timezone)
+                setCountry(location.country)
+                setLat(location.lat)
+                setLong(location.lng)
+                setAsn(res.data.as.asn)
+                setIsp(res.data.isp)
+                setError("")
+            } else {
+                throw new Error
+            }
+        } catch(error) {
+            setError(error)
+            throw new Error(error)
         }
 
     }
     const afficherIpInfos = () => {
-        if(country) {
+        if(!error) {
             return(
-                <p>{timeZone}, {country}, {lat}, {long}, {asn}, {isp}</p>
+                <p>{timeZone} {country} {lat} {long} {asn} {isp}</p>
             )
         } else {
             return (
-            <p>{error}</p>
+            <p>Désolé mais requête impossible</p>
             )
         }
     }
@@ -47,7 +51,7 @@ export default function Home () {
     return (
         <>
         <div className="Ip-form">
-            <input type="text" name="ipadress" id="ipInput" placeholder="Search for any IP address" />
+            <input type="text" name="ipadress" id="ipInput" placeholder="Search for any IP address" onChange={(event) => {setIpAddress(event.target.value)}}/>
             <button type="submit" onClick={getIpInformations}><img src={arrow} alt="Flêche permettant de soumettre l'input" /></button>
         </div>
         <div>
