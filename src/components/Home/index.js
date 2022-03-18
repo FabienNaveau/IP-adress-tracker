@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 import arrow from "../../images/icon-arrow.svg";
 
+
+
 export default function Home () {
 
     const [ipAddress, setIpAddress] = useState("");
@@ -12,6 +14,7 @@ export default function Home () {
     const [asn, setAsn] = useState("");
     const [isp, setIsp] = useState("");
     const [error, setError] = useState("");
+    
 
     const getIpInformations = async (event) => {
         event.preventDefault();
@@ -52,6 +55,9 @@ export default function Home () {
         }
     }
     
+    // initialize the map on the "map" div with a given center and zoom
+    
+    
     return (
         <>
         <div className="Ip-form">
@@ -61,6 +67,7 @@ export default function Home () {
         <div>
             {afficherIpInfos()}
         </div>
+        
         </>
     )
 }
