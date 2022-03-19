@@ -87,7 +87,10 @@ export default function Home () {
         container._leaflet_id = null;
         }
         const map = L.map("map", mapParams);
-        const marker = L.marker([lat, long]).addTo(map)
+        if(zoom !== 3) {
+            L.marker([lat, long]).addTo(map)
+        }
+        
       }, [lat, long, zoom]);
     
     
