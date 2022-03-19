@@ -88,7 +88,7 @@ export default function Home () {
         }
         const map = L.map("map", mapParams);
         const marker = L.marker([lat, long]).addTo(map)
-      }, [lat, long]);
+      }, [lat, long, zoom]);
     
     
     
