@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 import arrow from "../../images/icon-arrow.svg";
+import L from "leaflet";
 
 
 
@@ -9,10 +10,11 @@ export default function Home () {
     const [ipAddress, setIpAddress] = useState("");
     const [timeZone, setTimezone] = useState("");
     const [country, setCountry] = useState("");
-    const [lat, setLat] = useState("");
-    const [long, setLong] = useState("");
+    const [lat, setLat] = useState(37.0902);
+    const [long, setLong] = useState(-95.7129);
     const [asn, setAsn] = useState("");
     const [isp, setIsp] = useState("");
+    const [zoom, setZoom] = useState(3)
     const [error, setError] = useState("");
     
 
@@ -29,7 +31,9 @@ export default function Home () {
                 setLong(location.lng)
                 setAsn(res.data.as.asn)
                 setIsp(res.data.isp)
+                setZoom(13)
                 setError("")
+                
             } else {
                 throw new Error
             }
@@ -54,8 +58,39 @@ export default function Home () {
             )
         }
     }
+    const MAP_TILE = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      });
     
-    // initialize the map on the "map" div with a given center and zoom
+      // Define the styles that are to be passed to the map instance:
+      const mapStyles = {
+        overflow: "hidden",
+        width: "100%",
+        height: "80vh"
+      };
+
+      const mapParams = {
+        center: [lat, long],
+        zoom,
+        zoomControl: true,
+        maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
+        layers: [MAP_TILE]
+      };
+
+
+      useEffect(() => {
+        console.log("lat :", lat)
+        console.log("long :", long)
+        console.log("zoom :", zoom)
+        const container = L.DomUtil.get('map');
+        if(container != null){
+        container._leaflet_id = null;
+        }
+        const map = L.map("map", mapParams);
+        const marker = L.marker([lat, long]).addTo(map)
+      }, [lat, long]);
+    
+    
     
     
     return (
@@ -67,7 +102,9 @@ export default function Home () {
         <div>
             {afficherIpInfos()}
         </div>
-        
+        <div>
+            <div id="map" style={mapStyles} />
+        </div>
         </>
     )
 }
