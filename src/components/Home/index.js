@@ -72,23 +72,29 @@ export default function Home () {
       const mapParams = {
         center: [lat, long],
         zoom,
-        zoomControl: true,
+        minZoom: 1,
+        maxZoom: 18,
+        fadeAnimation: true,
+        zoomAnimation: true,
+        zoomControl: false,
         maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
         layers: [MAP_TILE]
       };
 
 
       useEffect(() => {
-        console.log("lat :", lat)
-        console.log("long :", long)
-        console.log("zoom :", zoom)
+        
         const container = L.DomUtil.get('map');
         if(container != null){
         container._leaflet_id = null;
         }
         const map = L.map("map", mapParams);
+        map.flyTo([lat, long], zoom, {
+            animate: true,
+            duration: 1.5
+        });
         if(zoom !== 3) {
-            L.marker([lat, long]).addTo(map)
+            L.marker([lat, long]).addTo(map).bindPopup(isp)
         }
         
       }, [lat, long, zoom]);
@@ -102,7 +108,7 @@ export default function Home () {
             <input type="text" name="ipadress" id="ipInput" placeholder="Search for any IP address" onChange={(event) => {setIpAddress(event.target.value)}}/>
             <button type="submit" onClick={getIpInformations}><img src={arrow} alt="Flêche permettant de soumettre l'input" /></button>
         </div>
-        <div>
+        <div className="infos">
             {afficherIpInfos()}
         </div>
         <div>
