@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from "react";
+import "./index.css"
 import axios from "axios"
 import arrow from "../../images/icon-arrow.svg";
 import L from "leaflet";
@@ -76,7 +78,7 @@ export default function Home () {
         maxZoom: 18,
         fadeAnimation: true,
         zoomAnimation: true,
-        zoomControl: false,
+        zoomControl: true,
         maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
         layers: [MAP_TILE]
       };
@@ -105,8 +107,11 @@ export default function Home () {
     return (
         <>
         <div className="Ip-form">
-            <input type="text" name="ipadress" id="ipInput" placeholder="Search for any IP address" onChange={(event) => {setIpAddress(event.target.value)}}/>
-            <button type="submit" onClick={getIpInformations}><img src={arrow} alt="Flêche permettant de soumettre l'input" /></button>
+            <h1>IP Address Tracker</h1>
+            <form>
+                <input type="text" name="ipaddress" id="ipInput" placeholder="Search for any IP address" onChange={(event) => {setIpAddress(event.target.value)}}/>
+                <button type="submit" onClick={getIpInformations}><img src={arrow} alt="Flêche permettant de soumettre l'input" /></button>
+            </form>
         </div>
         <div className="infos">
             {afficherIpInfos()}
