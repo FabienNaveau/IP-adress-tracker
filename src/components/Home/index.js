@@ -109,8 +109,8 @@ export default function Home () {
         <div className="Ip-form">
             <h1>IP Address Tracker</h1>
             <form>
-                <input type="text" name="ipaddress" id="ipInput" placeholder="Search for any IP address" onChange={(event) => {setIpAddress(event.target.value)}}/>
-                <button type="submit" onClick={getIpInformations}><img src={arrow} alt="Flêche permettant de soumettre l'input" /></button>
+                <input type="text" name="ipaddress" id="ipInput" placeholder="Search for any IP address" autoFocus onChange={(event) => {setIpAddress(event.target.value)}}/>
+                <input type="image" onClick={getIpInformations} src={arrow}/>
             </form>
         </div>
         <div className="infos">

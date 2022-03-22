@@ -1,7 +1,7 @@
 * {
     margin: 0;
 }
-
+ /* HEADER STYLE */
 .Ip-form {
     background-image: url("../../images/pattern-bg.png");
     background-repeat: no-repeat;
@@ -20,22 +20,28 @@
 form {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
-input {
+input[type="text"] {
     padding: 4px;
-    border: 2px solid white;
-    border-radius: 3px 0 0 3px;
+    width: 40%;
+    border:  none;
+    outline: none;
+    border-radius: 10px 0 0 10px;
 }
 
-button {
-    border: 4px solid black;
+input[type="image"] {
+    border: none;
+    outline: none;
+    width: 20px;
+    padding: .5rem;
     background-color: black;
-    border-radius: 3px;
+    border-radius: 0 10px 10px 0;
 }
 
-button img {
-    width: 10px;
-}
+/* INFORMATIONS STYLE */
+
+
 
 
