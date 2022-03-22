@@ -39,6 +39,9 @@ input[type="image"] {
     background-color: black;
     border-radius: 0 10px 10px 0;
 }
+input[type="image"]:hover {
+    cursor: pointer;
+}
 
 /* INFORMATIONS STYLE */
 

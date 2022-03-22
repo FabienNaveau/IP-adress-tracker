@@ -61,7 +61,8 @@ export default function Home () {
         }
     }
     const MAP_TILE = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
       });
     
       // Define the styles that are to be passed to the map instance:
@@ -74,12 +75,11 @@ export default function Home () {
       const mapParams = {
         center: [lat, long],
         zoom,
-        minZoom: 1,
+        minZoom: 3,
         maxZoom: 18,
         fadeAnimation: true,
         zoomAnimation: true,
         zoomControl: true,
-        maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
         layers: [MAP_TILE]
       };
 
@@ -92,8 +92,7 @@ export default function Home () {
         }
         const map = L.map("map", mapParams);
         map.flyTo([lat, long], zoom, {
-            animate: true,
-            duration: 1.5
+            animate: false,
         });
         if(zoom !== 3) {
             L.marker([lat, long]).addTo(map).bindPopup(isp)
