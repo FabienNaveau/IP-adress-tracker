@@ -2,24 +2,20 @@
     margin: 0;
 }
 
-body {
-    position: relative;
-    
-}
  /* HEADER STYLE */
 .Ip-form {
+    position: relative;
     background-image: url("../../images/pattern-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 3rem;
-    text-align: center;
-    
+    padding: 1rem 1rem 5rem 1rem;
+    text-align: center; 
 }
 
 .Ip-form h1 {
     
     color: white;
-    margin-bottom: 2rem;
+    margin-bottom: .5rem;
 }
 
 form {
@@ -54,9 +50,10 @@ input[type="image"]:hover {
     background-color: white;
     position: absolute;
     z-index: 2;
-    top: 18%;
+    top: 65%;
     left: 10%;
     width: 80%;
+    height: 60%;
     display: flex;
     justify-content: space-around;
     padding: 1rem;
@@ -66,6 +63,9 @@ input[type="image"]:hover {
 .infos div {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 2rem;
 }
 
 .infos-title {
@@ -85,6 +85,38 @@ input[type="image"]:hover {
 
 #map {
     z-index: 0;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+    .infos {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        
+    }
+
+    .infos > div {
+        height: 20%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: .5rem;
+
+    }
+
+    .infos-title {
+        margin: 0;
+    }
+    
+    .border-left {
+        border: none;
+        padding: none;
+    }
 }
 
 

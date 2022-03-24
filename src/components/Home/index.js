@@ -121,10 +121,11 @@ export default function Home () {
                 <input type="text" name="ipaddress" id="ipInput" placeholder="Search for any IP address" autoFocus onChange={(event) => {setIpAddress(event.target.value)}}/>
                 <input type="image" onClick={getIpInformations} src={arrow}/>
             </form>
-        </div>
-        <div className="infos">
+            <div className="infos">
             {afficherIpInfos()}
         </div>
+        </div>
+        
         <div>
             <div id="map" style={mapStyles} />
         </div>
