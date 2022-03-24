@@ -2,6 +2,10 @@
     margin: 0;
 }
 
+.bold {
+    font-weight: bold;
+}
+
  /* HEADER STYLE */
 .Ip-form {
     position: relative;
@@ -55,6 +59,7 @@ input[type="image"]:hover {
     width: 80%;
     height: 60%;
     display: flex;
+    align-items: center;
     justify-content: space-around;
     padding: 1rem;
     border-radius: 10px;

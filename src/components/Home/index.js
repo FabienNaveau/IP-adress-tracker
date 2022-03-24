@@ -40,7 +40,6 @@ export default function Home () {
                 setRegion(location.region)
                 setZoom(13)
                 setError("")
-                
             } else {
                 throw new Error
             }
@@ -53,7 +52,7 @@ export default function Home () {
     const afficherIpInfos = () => {
         if(!error && !country) {
             return(
-                <p>Veuillez entrer une adresse IP</p>
+                <p className="bold">Veuillez entrer une adresse IP</p>
             )
         } else if (!error) {
             return (
@@ -66,7 +65,7 @@ export default function Home () {
             )
         } else {
             return (
-                <p>{error}</p>
+                <p className="bold">{error}</p>
             )
         }
     }
@@ -108,7 +107,7 @@ export default function Home () {
             L.marker([lat, long]).addTo(map).bindPopup(isp)
         }
         
-      }, [lat, long, zoom]);
+      }, [lat, long, zoom, isp]);
     
     
     
