@@ -14,10 +14,12 @@ export default function Home () {
     const [country, setCountry] = useState("");
     const [lat, setLat] = useState(37.0902);
     const [long, setLong] = useState(-95.7129);
-    const [asn, setAsn] = useState("");
+    const [city, setCity] = useState("");
     const [isp, setIsp] = useState("");
+    const [region, setRegion] = useState("");
     const [zoom, setZoom] = useState(3)
     const [error, setError] = useState("");
+    
     
 
     const getIpInformations = async (event) => {
@@ -31,11 +33,12 @@ export default function Home () {
                 setCountry(location.country)
                 setLat(location.lat)
                 setLong(location.lng)
-                setAsn(res.data.as.asn)
+                setCity(location.city)
                 setIsp(res.data.isp)
+                setRegion(location.region)
                 setZoom(13)
                 setError("")
-                
+                console.log(res.data)
             } else {
                 throw new Error
             }
@@ -52,7 +55,7 @@ export default function Home () {
             )
         } else if (!error) {
             return (
-                <p>{timeZone} {country} {lat} {long} {asn} {isp}</p>
+                <p>{ipAddress} {city},{region},{country} UTC {timeZone} {isp}</p>
             )
         } else {
             return (
