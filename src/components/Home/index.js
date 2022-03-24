@@ -10,7 +10,8 @@ import L from "leaflet";
 export default function Home () {
 
     const [ipAddress, setIpAddress] = useState("");
-    const [timeZone, setTimezone] = useState("");
+    const [IpDataAddress, setIpDataAddress] = useState("");
+    const [timezone, setTimezone] = useState("");
     const [country, setCountry] = useState("");
     const [lat, setLat] = useState(37.0902);
     const [long, setLong] = useState(-95.7129);
@@ -29,6 +30,7 @@ export default function Home () {
             
             if(res) {
                 const location = res.data.location
+                setIpDataAddress(res.data.ip)
                 setTimezone(location.timezone)
                 setCountry(location.country)
                 setLat(location.lat)
@@ -38,7 +40,7 @@ export default function Home () {
                 setRegion(location.region)
                 setZoom(13)
                 setError("")
-                console.log(res.data)
+                
             } else {
                 throw new Error
             }
@@ -55,7 +57,12 @@ export default function Home () {
             )
         } else if (!error) {
             return (
-                <p>{ipAddress} {city},{region},{country} UTC {timeZone} {isp}</p>
+                <>
+                <div><span className="infos-title">IP ADDRESS</span><span className="infos-content">{IpDataAddress}</span></div>
+                <div className="border-left"><span className="infos-title">LOCATION</span><span className="infos-content">{city}, {region}, {country}</span></div>
+                <div className="border-left"><span className="infos-title">TIMEZONE</span><span className="infos-content">UTC {timezone}</span></div>
+                <div className="border-left"><span className="infos-title">ISP</span><span className="infos-content">{isp}</span></div>
+                </>
             )
         } else {
             return (
@@ -72,7 +79,7 @@ export default function Home () {
       const mapStyles = {
         overflow: "hidden",
         width: "100%",
-        height: "80vh"
+        height: "76vh"
       };
 
       const mapParams = {

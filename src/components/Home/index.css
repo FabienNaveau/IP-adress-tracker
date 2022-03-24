@@ -1,6 +1,11 @@
 * {
     margin: 0;
 }
+
+body {
+    position: relative;
+    
+}
  /* HEADER STYLE */
 .Ip-form {
     background-image: url("../../images/pattern-bg.png");
@@ -12,7 +17,7 @@
 }
 
 .Ip-form h1 {
-    margin-top: 2rem;;
+    
     color: white;
     margin-bottom: 2rem;
 }
@@ -45,6 +50,42 @@ input[type="image"]:hover {
 
 /* INFORMATIONS STYLE */
 
+.infos {
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+    top: 18%;
+    left: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.infos div {
+    display: flex;
+    flex-direction: column;
+}
+
+.infos-title {
+    color: grey;
+    font-size: 0.7rem;
+    margin-bottom: .5rem;
+}
+
+.infos-content {
+    font-weight: bold;
+}
+
+.border-left {
+    border-left: 1px solid grey;
+    padding-left: 3rem;
+}
+
+#map {
+    z-index: 0;
+}
 
 
 
