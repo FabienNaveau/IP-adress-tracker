@@ -100,14 +100,18 @@ export default function Home () {
         container._leaflet_id = null;
         }
         const map = L.map("map", mapParams);
-        map.flyTo([lat, long], zoom, {
-            animate: false,
+        map.dragging.enable()
+        map.setView([lat, long], zoom, {
+            animate: true,
         });
+        
+        
         if(zoom !== 3) {
-            L.marker([lat, long]).addTo(map).bindPopup(isp)
+            L.marker([lat, long]).addTo(map)
+            
         }
         
-      }, [lat, long, zoom, isp]);
+      }, [lat, long, zoom]);
     
     
     
